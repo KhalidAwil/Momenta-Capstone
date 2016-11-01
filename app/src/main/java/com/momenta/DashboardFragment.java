@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
     private NumberPicker numberPicker;
     private Button button;
     private helperPreferences helperPreferences;
+    public TextRoundCornerProgressBar progressBar;
 
 
 
@@ -94,6 +96,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
 
                         TextView goal = (TextView)activityView.findViewById(R.id.goalTime);
                         goal.setText(totalGoal.toString());
+
+                        progressBar = (TextRoundCornerProgressBar) activityView.findViewById(R.id.progressBar);
+
+                        progressBar.setMax(totalGoal);
+                        progressBar.setProgress(totalTime);
                     }
 
                     @Override
@@ -101,19 +108,27 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
                     }
                 }
         );
+
+
         Bundle args = getActivity().getIntent().getExtras();
+        String name = "";
+        String email = "";
+        String photo = "";
 
-        String name = args.getString("displayName");
-        Log.d("pls", name + " test");
-        String email = args.getString("email");
+        if (args != null) {
+            name = args.getString("displayName");
+            Log.d("pls", name + " test");
+            email = args.getString("email");
 
-        String photo = args.getString("personPhoto");
+            photo = args.getString("personPhoto");
+        }
+
 
         TextView displayNameText = (TextView)activityView.findViewById(R.id.displayName);
         displayNameText.setText(name);
 
-        TextView emailText = (TextView)activityView.findViewById(R.id.email);
-        emailText.setText(email);
+        //TextView emailText = (TextView)activityView.findViewById(R.id.email);
+        //emailText.setText(email);
 
         ImageView imgView = (ImageView)activityView.findViewById(R.id.imageView);
         Picasso.with(getActivity()).load(photo).into(imgView);
