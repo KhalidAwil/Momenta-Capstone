@@ -91,11 +91,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
                             totalGoal += data.child(Task.GOAL).getValue(Integer.class);
                         }
 
-                        TextView timeSpent = (TextView)activityView.findViewById(R.id.totalTimeSpent);
-                        timeSpent.setText(totalTime.toString());
+                       // TextView timeSpent = (TextView)activityView.findViewById(R.id.totalTimeSpent);
+                       // timeSpent.setText(totalTime.toString());
 
-                        TextView goal = (TextView)activityView.findViewById(R.id.goalTime);
-                        goal.setText(totalGoal.toString());
+                        //TextView goal = (TextView)activityView.findViewById(R.id.goalTime);
+                        //goal.setText(totalGoal.toString());
 
                         progressBar = (TextRoundCornerProgressBar) activityView.findViewById(R.id.progressBar);
 
